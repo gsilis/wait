@@ -10,6 +10,7 @@ import { DialogBackgroundProvider } from './contexts/dialog-background-context.t
 import './index.css'
 import { DialogManagerProvider } from './contexts/dialog-manager-context.tsx'
 import { DialogShadowProvider } from './contexts/dialog-shadow-context.tsx'
+import { DialogTextProvider } from './contexts/dialog-text-context.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -20,9 +21,11 @@ createRoot(document.getElementById('root')!).render(
             <DialogTitleProvider>
               <DialogBackgroundProvider>
                 <DialogShadowProvider>
-                  <DialogManagerProvider>
-                    <App />
-                  </DialogManagerProvider>
+                  <DialogTextProvider>
+                    <DialogManagerProvider>
+                      <App />
+                    </DialogManagerProvider>
+                  </DialogTextProvider>
                 </DialogShadowProvider>
               </DialogBackgroundProvider>
             </DialogTitleProvider>

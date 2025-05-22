@@ -1,14 +1,20 @@
 import type { ComponentFactory } from "./component-factory";
 import { DialogFactory } from "./dialog-factory";
 import { Sequence } from "./sequence";
+import type { SideEffectHandlerFactory } from "./side-effect-handler-factory";
 
-type SequenceFactoryExecutor = (dialogFactory: DialogFactory) => void;
+type SequenceFactoryExecutor = (dialogFactory: DialogFactory, sideEffect: SideEffectHandlerFactory) => void;
 
 export class SequenceFactory {
   private componentFactory: ComponentFactory;
+  private sideEffectHandlerFactory: SideEffectHandlerFactory;
 
-  constructor(componentFactory: ComponentFactory) {
+  constructor(
+    componentFactory: ComponentFactory,
+    sideEffectHandlerFactory: SideEffectHandlerFactory
+  ) {
     this.componentFactory = componentFactory;
+    this.sideEffectHandlerFactory = sideEffectHandlerFactory;
   }
 
   create(name: string, executor: SequenceFactoryExecutor): Sequence {
@@ -16,7 +22,7 @@ export class SequenceFactory {
     const dialogFactory = new DialogFactory(this.componentFactory, sequence);
 
     try {
-      executor(dialogFactory);
+      executor(dialogFactory, this.sideEffectHandlerFactory);
     } catch (err) {
       console.group('SequenceFactory');
       console.error(`Sequence factory executor threw an error.`);

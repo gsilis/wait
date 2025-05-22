@@ -7,6 +7,7 @@ import createSequences from './core/sequence-setup';
 import { DialogManagerContext } from './contexts/dialog-manager-context';
 import { StoryId } from './stories/start';
 import { ComponentFactory } from './core/component-factory';
+import { SideEffectHandlerFactory } from './core/side-effect-handler-factory';
 
 function App() {
   const initialized = useRef<boolean>(null);
@@ -14,7 +15,8 @@ function App() {
   const dialogManager = use(DialogManagerContext);
   
   const componentFactory = useMemo<ComponentFactory>(() => new ComponentFactory(), []);
-  const sequenceFactory = useMemo<SequenceFactory>(() => new SequenceFactory(componentFactory), [componentFactory]);
+  const sideEffectHandlerFactory = useMemo<SideEffectHandlerFactory>(() => new SideEffectHandlerFactory(), []);
+  const sequenceFactory = useMemo<SequenceFactory>(() => new SequenceFactory(componentFactory, sideEffectHandlerFactory), [componentFactory]);
 
   useEffect(() => {
     if (initialized.current) {

@@ -13,7 +13,8 @@ export function DialogShadowProvider({ children }: ChildrenProps) {
   const classes = useMemo<string>(() => {
     return [
       'shadow-2xl',
-      'shadow-slate-950'
+      'shadow-slate-950',
+      'dark:shadow-slate-200'
     ].join(' ');
   }, []);
   const api: DialogShadowInterface = {

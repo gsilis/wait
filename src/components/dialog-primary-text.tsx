@@ -2,14 +2,14 @@ import { use, useMemo } from "react";
 import type { ChildrenProps } from "../contexts/support/children-props";
 import { DialogTextContext } from "../contexts/dialog-text-context";
 
-export function DialogTitle({ children }: ChildrenProps) {
+export function DialogPrimaryText({ children }: ChildrenProps) {
   const textContext = use(DialogTextContext);
   const classes = useMemo<string>(() => {
     return [
-      'text-bold text-2xl text-center my-4',
+      'text-md',
       textContext.primaryTextClasses,
     ].join(' ');
   }, [textContext.primaryTextClasses]);
 
-  return <p className={ classes }>{ children }</p>;
+  return <div className={ classes }>{ children }</div>;
 }

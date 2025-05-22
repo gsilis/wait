@@ -36,7 +36,7 @@ export function Dialog({
   }, [dialogTitle.titleClasses]);
 
   return <div className={ dialogClasses }>
-    <div className={ dialogTitle.titleClasses }>{ title }</div>
+    <div className={ titleClasses }>{ title }</div>
     { children }
   </div>;
 }

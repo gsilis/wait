@@ -18,7 +18,7 @@ export function DialogBackgroundProvider({ children }: ChildrenProps) {
       'border-slate-300',
       'from-slate-50 to-slate-300',
 
-      'dark:from-slate-950 dark:to-slate-800',
+      'dark:from-slate-900 dark:to-slate-700',
       'dark:border-slate-800'
     ].join(' ');
   }, []);

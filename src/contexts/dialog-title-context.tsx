@@ -23,9 +23,9 @@ export function DialogTitleProvider({ children }: ChildrenProps) {
       'border-slate-700',
 
       'dark:text-slate-800',
-      'dark:from-slate-200',
-      'dark:to-slate-400',
-      'dark:border-slate-400',
+      'dark:from-slate-300',
+      'dark:to-slate-600',
+      'dark:border-slate-500',
     ].join(' ');
   }, []);
   const api: DialogTitleInterface = {
