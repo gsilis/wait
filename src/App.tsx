@@ -1,4 +1,4 @@
-import { Component, use, useEffect, useMemo, useRef } from 'react';
+import { use, useEffect, useMemo, useRef } from 'react';
 import './App.css';
 import { DialogRenderer } from './components/dialog-renderer';
 import { DialogRegistryContext } from './contexts/dialog-registry-context';

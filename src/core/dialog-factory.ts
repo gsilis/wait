@@ -102,6 +102,9 @@ export class DialogFactory {
   }
 
   private dialogRouterFor(confirmId: string, cancelId: string): DialogRouter {
-    return (result) => result ? confirmId : cancelId;
+    return (result) => {
+      console.log(result, confirmId, cancelId);
+      return result ? confirmId : cancelId
+    };
   }
 }

@@ -63,7 +63,7 @@ export function DialogContainer({
   const doRouting = useCallback((result: boolean) => {
     try {
       dialog.handle(result, decisions);
-      const nextRoute = dialog.route(decisions);
+      const nextRoute = dialog.route(result, decisions);
       const nextDialog = registry.getDialog(nextRoute);
 
       manager.addDialog(nextDialog);
