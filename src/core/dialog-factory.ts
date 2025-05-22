@@ -1,4 +1,4 @@
-import type { DialogHandler, DialogRouter } from "../constants/dialog-type";
+import type { DialogHandler, DialogRouter, DialogType } from "../constants/dialog-type";
 import type { Sequence } from "./sequence";
 import type { ComponentFactory } from "./component-factory";
 
@@ -54,7 +54,7 @@ export class DialogFactory {
       throw new Error(`No cancel id is set.`);
     }
 
-    const dialog = {
+    const dialog: DialogType = {
       id,
       title,
       component: this.componentFactory.simpleConfirm(title, message, confirmText, cancelText, confirmTitle, cancelTitle),
@@ -82,12 +82,47 @@ export class DialogFactory {
       throw new Error('No cancel id is set.');
     }
 
-    const dialog = {
+    const dialog: DialogType = {
       id,
       component: this.componentFactory.simpleConfirm(title, message, confirmText, cancelText, confirmTitle, cancelTitle),
       route: this.dialogRouterFor(nextId, this.cancelId),
       handle: handler,
       title,
+    };
+
+    this.sequence.add(dialog);
+  }
+
+  selectWithSideEffect(
+    title: string,
+    handler: DialogHandler,
+    message: string = '',
+    options: [title: string, message?: string, selected?: boolean][] = [],
+    confirmText: string = 'Submit',
+    confirmTitle: string = '',
+    cancelable: boolean = false,
+    cancelText: string = '',
+    cancelTitle: string = '',
+    overrideNextId: string | null = null
+  ) {
+    const id = this.sequence.nextId();
+    const nextId = overrideNextId || this.sequence.nextId(1);
+    let router: DialogRouter;
+
+    if (cancelable && !this.cancelId) {
+      throw new Error('No cancel id is set.');
+    } else if (cancelable && this.cancelId) {
+      router = this.dialogRouterFor(nextId, this.cancelId);
+    } else {
+      router = this.messageRouterFor(nextId);
+    }
+
+    const dialog: DialogType = {
+      id,
+      title,
+      component: this.componentFactory.simpleSelect(title, options, message, confirmText, confirmTitle, cancelable, cancelText, cancelTitle),
+      route: router,
+      handle: handler,
     };
 
     this.sequence.add(dialog);

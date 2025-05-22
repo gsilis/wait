@@ -77,11 +77,11 @@ export function DialogContainer({
       manager.addDialog(registry.getDialog(NullDialogId));
     }
   }, [dialog.route, dialog.handle, manager.addDialog, decisions, registry.getDialog]);
-  const onAccept = useCallback(() => {
-    doRouting(true);
+  const onAccept = useCallback((value: any = true) => {
+    doRouting(value);
   }, [doRouting]);
-  const onDecline = useCallback(() => {
-    doRouting(false);
+  const onDecline = useCallback((value: any = false) => {
+    doRouting(value);
   }, [doRouting]);
 
   return <div className={ classes }>

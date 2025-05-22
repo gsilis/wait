@@ -1,5 +1,7 @@
 import AlertDialog from "../components/alert-dialog";
 import ConfirmDialog from "../components/confirm-dialog";
+import { DialogSelect } from "../components/dialog-select";
+import type { TileSelectOption } from "../components/tile-select";
 import type { DialogComponentProps } from "../constants/dialog-type";
 
 export class ComponentFactory {
@@ -57,6 +59,40 @@ export class ComponentFactory {
       >
         { child }
       </ConfirmDialog>
+    );
+  }
+
+  simpleSelect(
+    title: string,
+    options: [title: string, message?: string, selected?: boolean][],
+    message: string = '',
+    confirmText: string = 'Submit',
+    confirmTitle: string = '',
+    cancelable: boolean = false,
+    cancelText: string = '',
+    cancelTitle: string = ''
+  ) {
+    let selectedOption: string | undefined;
+    const selectOptions = options.map((option, index): TileSelectOption => {
+      if (option[2]) selectedOption = `${index}`;
+      return { id: `${index}`, title: option[0], description: option[1] };
+    });
+
+    return ({ onAccept, onDecline }: DialogComponentProps) => (
+      <DialogSelect
+        title={ title }
+        confirmText={ confirmText }
+        confirmTitle={ confirmTitle }
+        cancelText={ cancelText }
+        cancelTitle={ cancelTitle }
+        cancelable={ cancelable }
+        options={ selectOptions }
+        selected={ selectedOption }
+        accept={ onAccept }
+        decline={ onDecline }
+      >
+        { message }
+      </DialogSelect>
     );
   }
 }

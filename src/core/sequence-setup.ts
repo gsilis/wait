@@ -9,7 +9,9 @@ export default function createSequences(
 ) {
   stories.map(
     (mod) => mod(sequenceFactory)
-  ).reduce(
+  ).reduce((sequences: Sequence[], newSequences: Sequence[]): Sequence[] => {
+    return [...sequences, ...newSequences];
+  }, []).reduce(
     (collection: DialogType[], sequence: Sequence): DialogType[] => {
       return [...collection, ...sequence.sequenceSteps];
     }, []

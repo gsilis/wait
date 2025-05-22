@@ -27,7 +27,7 @@ export function DialogRegistryProvider({ children }: ChildrenProps) {
       return registry.dialogFor(id);
     } catch (err) {
       console.group(`DialogRegistry.getDialog(${id})`);
-      console.error(`Could not fetch dialog settings.`);
+      console.info(`Could not fetch dialog settings.`);
       console.error(err);
       console.groupEnd();
       return NullDialogType;
