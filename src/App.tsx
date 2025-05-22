@@ -8,12 +8,14 @@ import { DialogManagerContext } from './contexts/dialog-manager-context';
 import { StoryId } from './stories/start';
 import { ComponentFactory } from './core/component-factory';
 import { SideEffectHandlerFactory } from './core/side-effect-handler-factory';
+import { ApplicationBackgroundContext } from './contexts/application-background-context';
 
 function App() {
   const initialized = useRef<boolean>(null);
   const dialogRegistry = use(DialogRegistryContext);
   const dialogManager = use(DialogManagerContext);
-  
+  const applicationBacktround = use(ApplicationBackgroundContext);
+
   const componentFactory = useMemo<ComponentFactory>(() => new ComponentFactory(), []);
   const sideEffectHandlerFactory = useMemo<SideEffectHandlerFactory>(() => new SideEffectHandlerFactory(), []);
   const sequenceFactory = useMemo<SequenceFactory>(() => new SequenceFactory(componentFactory, sideEffectHandlerFactory), [componentFactory]);
@@ -34,9 +36,9 @@ function App() {
   ]);
 
   return (
-    <>
+    <div className={ applicationBacktround.applicationBackgroundClasses }>
       <DialogRenderer></DialogRenderer>
-    </>
+    </div>
   )
 }
 
