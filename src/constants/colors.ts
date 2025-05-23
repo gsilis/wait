@@ -1,0 +1,10 @@
+export const BLACK = 'black';
+export const WHITE = 'white';
+export const GRAY = 'gray';
+export const RED = 'red';
+export const ORANGE = 'orange';
+export const YELLOW = 'yellow';
+export const GREEN = 'green';
+export const BLUE = 'blue';
+export const INDIGO = 'indigo';
+export const VIOLET = 'violet';

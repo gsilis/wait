@@ -5,4 +5,5 @@ export interface ButtonProps {
   disabled?: boolean,
   onClick: MouseEventHandler<HTMLButtonElement>,
   title?: string,
+  progress?: number,
 }

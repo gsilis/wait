@@ -65,6 +65,38 @@ export class DialogFactory {
     this.sequence.add(dialog);
   }
 
+  custom(
+    title: string,
+    component: React.FunctionComponent,
+    overrideNextId: string | null = null,
+    cancelable: boolean = false,
+    handler: DialogHandler,
+  ) {
+    const id = this.sequence.nextId();
+    const nextId = overrideNextId || this.sequence.nextId(1);
+
+    if (cancelable && !this.cancelId) {
+      throw new Error(`No cancel id is set.`);
+    }
+
+    let router;
+    if (cancelable && this.cancelId) {
+      router = this.dialogRouterFor(nextId, this.cancelId);
+    } else {
+      router = this.messageRouterFor(nextId);
+    }
+
+    const dialog: DialogType = {
+      id,
+      title,
+      component,
+      route: router,
+      handle: handler,
+    };
+
+    this.sequence.add(dialog);
+  }
+
   dialogWithSideEffect(
     title: string,
     message: StringOrComponent,
@@ -138,7 +170,6 @@ export class DialogFactory {
 
   private dialogRouterFor(confirmId: string, cancelId: string): DialogRouter {
     return (result) => {
-      console.log(result, confirmId, cancelId);
       return result ? confirmId : cancelId
     };
   }

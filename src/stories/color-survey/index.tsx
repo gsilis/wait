@@ -1,4 +1,5 @@
 import { DecisionValue } from "../../components/decision-value";
+import { BLACK, BLUE, GRAY, GREEN, INDIGO, ORANGE, RED, VIOLET, WHITE, YELLOW } from "../../constants/colors";
 import { FAVORITE_COLOR } from "../../constants/decision-type";
 import type { Sequence } from "../../core/sequence";
 import type { SequenceFactory } from "../../core/sequence-factory";
@@ -13,16 +14,16 @@ export default function ColorSurvey(sf: SequenceFactory): Sequence[] {
       return [
         df.cancel(ColorSurveyChangeMindStoryId),
         df.selectWithSideEffect('Favorite Color', se.saveTo(FAVORITE_COLOR), 'What is your favorite color?', [
-          ['Black', '', 'black'],
-          ['White', '', 'white'],
-          ['Gray', '', 'gray'],
-          ['Red', '', 'red'],
-          ['Orange', '', 'orange'],
-          ['Yellow', '', 'yellow'],
-          ['Green', '', 'green'],
-          ['Blue', '', 'blue'],
-          ['Indigo', '', 'indigo'],
-          ['Violet', '', 'violet'],
+          ['Black', '', BLACK],
+          ['White', '', WHITE],
+          ['Gray', '', GRAY],
+          ['Red', '', RED],
+          ['Orange', '', ORANGE],
+          ['Yellow', '', YELLOW],
+          ['Green', '', GREEN],
+          ['Blue', '', BLUE],
+          ['Indigo', '', INDIGO],
+          ['Violet', '', VIOLET],
         ], 'Submit', undefined, true, `Cancel`, undefined),
         df.cancel(NotFavoriteStoryId),
         df.dialog('Double Check', () => <>Is <DecisionValue decisionId={FAVORITE_COLOR} /> really your favorite color?</>),
