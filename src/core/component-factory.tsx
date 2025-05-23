@@ -67,7 +67,7 @@ export class ComponentFactory {
 
   simpleSelect(
     title: string,
-    options: [title: string, message?: string, selected?: boolean][],
+    options: [title: string, message?: string, id?: string, selected?: boolean][],
     message: string = '',
     confirmText: string = 'Submit',
     confirmTitle: string = '',
@@ -77,8 +77,9 @@ export class ComponentFactory {
   ) {
     let selectedOption: string | undefined;
     const selectOptions = options.map((option, index): TileSelectOption => {
-      if (option[2]) selectedOption = `${index}`;
-      return { id: `${index}`, title: option[0], description: option[1] };
+      if (option[3]) selectedOption = `${index}`;
+      const optionId = option[2] || index;
+      return { id: `${optionId}`, title: option[0], description: option[1] };
     });
 
     return ({ onAccept, onDecline }: DialogComponentProps) => (

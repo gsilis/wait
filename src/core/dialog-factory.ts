@@ -97,7 +97,7 @@ export class DialogFactory {
     title: string,
     handler: DialogHandler,
     message: string = '',
-    options: [title: string, message?: string, selected?: boolean][] = [],
+    options: [title: string, message?: string, id?: string, selected?: boolean][] = [],
     confirmText: string = 'Submit',
     confirmTitle: string = '',
     cancelable: boolean = false,
