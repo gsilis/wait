@@ -1,5 +1,6 @@
 import AlertDialog from "../components/alert-dialog";
 import ConfirmDialog from "../components/confirm-dialog";
+import { DialogPrimaryText } from "../components/dialog-primary-text";
 import { DialogSelect } from "../components/dialog-select";
 import type { TileSelectOption } from "../components/tile-select";
 import type { DialogComponentProps } from "../constants/dialog-type";
@@ -26,7 +27,9 @@ export class ComponentFactory {
         confirmText={ confirmText }
         confirmTitle={ confirmTitle }
       >
-        { child }
+        <DialogPrimaryText>
+          { child }
+        </DialogPrimaryText>
       </AlertDialog>
     );
   }
@@ -44,7 +47,7 @@ export class ComponentFactory {
       const Component = message as React.FunctionComponent;
       child = <Component />;
     } else {
-      child = message;
+      child = <DialogPrimaryText>{ message }</DialogPrimaryText>;
     }
 
     return ({ onAccept, onDecline }: DialogComponentProps) => (
@@ -91,7 +94,9 @@ export class ComponentFactory {
         accept={ onAccept }
         decline={ onDecline }
       >
-        { message }
+        <DialogPrimaryText>
+          { message }
+        </DialogPrimaryText>
       </DialogSelect>
     );
   }

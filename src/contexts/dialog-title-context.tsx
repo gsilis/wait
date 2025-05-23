@@ -16,6 +16,7 @@ export function DialogTitleProvider({ children }: ChildrenProps) {
       'text-md',
       'border-1',
       'bg-linear-to-bl',
+      'font-bold',
 
       'text-slate-50',
       'from-slate-500',
