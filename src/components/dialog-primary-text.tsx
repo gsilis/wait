@@ -7,6 +7,7 @@ export function DialogPrimaryText({ children }: ChildrenProps) {
   const classes = useMemo<string>(() => {
     return [
       'text-md',
+      'my-2',
       textContext.primaryTextClasses,
     ].join(' ');
   }, [textContext.primaryTextClasses]);

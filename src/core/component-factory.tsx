@@ -1,9 +1,11 @@
 import AlertDialog from "../components/alert-dialog";
 import ConfirmDialog from "../components/confirm-dialog";
+import { Dialog } from "../components/dialog";
 import { DialogPrimaryText } from "../components/dialog-primary-text";
 import { DialogSelect } from "../components/dialog-select";
 import type { TileSelectOption } from "../components/tile-select";
 import type { DialogComponentProps } from "../constants/dialog-type";
+import type { ChildrenProps } from "../contexts/support/children-props";
 
 export class ComponentFactory {
   simpleAlert(
@@ -99,6 +101,27 @@ export class ComponentFactory {
           { message }
         </DialogPrimaryText>
       </DialogSelect>
+    );
+  }
+
+  customDialog(
+    title: string,
+    Component: React.FunctionComponent<DialogComponentProps>,
+  ) {
+    return ({ onAccept, onDecline }: DialogComponentProps) => (
+      <Dialog title={ title }>
+        <Component onAccept={ onAccept } onDecline={ onDecline } />
+      </Dialog>
+    );
+  }
+
+  componentWithChildren(
+    Component: React.FunctionComponent<DialogComponentProps & ChildrenProps>,
+    children: any,
+    properties: Record<any, any> = {}
+  ) {
+    return ({ onAccept, onDecline }: DialogComponentProps) => (
+      <Component onAccept={ onAccept } onDecline={ onDecline } { ...properties }>{ children }</Component>
     );
   }
 }

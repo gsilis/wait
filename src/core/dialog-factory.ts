@@ -68,9 +68,9 @@ export class DialogFactory {
   custom(
     title: string,
     component: React.FunctionComponent,
+    handler: DialogHandler,
     overrideNextId: string | null = null,
     cancelable: boolean = false,
-    handler: DialogHandler,
   ) {
     const id = this.sequence.nextId();
     const nextId = overrideNextId || this.sequence.nextId(1);
@@ -89,7 +89,7 @@ export class DialogFactory {
     const dialog: DialogType = {
       id,
       title,
-      component,
+      component: this.componentFactory.customDialog(title, component),
       route: router,
       handle: handler,
     };
