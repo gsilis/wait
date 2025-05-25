@@ -2,13 +2,17 @@ import type { DialogType } from "../constants/dialog-type";
 import type { SequenceFactory } from "./sequence-factory";
 import { stories } from "../stories";
 import type { Sequence } from "./sequence";
+import type { SideEffectHandlerFactory } from "./side-effect-handler-factory";
+import type { ComponentFactory } from "./component-factory";
 
 export default function createSequences(
   sequenceFactory: SequenceFactory,
+  sideEffectFactory: SideEffectHandlerFactory,
+  componentFactory: ComponentFactory,
   addDialog: (id: string, dialog: DialogType) => void,
 ) {
   stories.map(
-    (mod) => mod(sequenceFactory)
+    (mod) => mod(sequenceFactory, sideEffectFactory, componentFactory)
   ).reduce((sequences: Sequence[], newSequences: Sequence[]): Sequence[] => {
     return [...sequences, ...newSequences];
   }, []).reduce(

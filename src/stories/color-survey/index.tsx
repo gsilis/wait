@@ -43,7 +43,7 @@ export default function ColorSurvey(sf: SequenceFactory): Sequence[] {
       ];
     }),
 
-    sf.create(NotFavoriteStoryId, (df, se) => {
+    sf.create(NotFavoriteStoryId, (df) => {
       return [
         df.message('Confused', 'You picked a color that was not your favorite.'),
         df.selectWithSideEffect('Tell us Why', () => {}, `Why did you pick a color you don't like?`, [

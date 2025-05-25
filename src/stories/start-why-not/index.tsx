@@ -8,7 +8,7 @@ const SureStoryId = 'start-why-not-be-sure' as const;
 
 export default function StartWhyNot(sf: SequenceFactory): Sequence[] {
   return [
-    sf.create(StoryId, (df, se) => {
+    sf.create(StoryId, (df) => {
       return [
         df.cancel(ColorSurveyStoryId),
         df.dialog('Question', 'Are you sure?', 'Yes', 'No'),
@@ -33,14 +33,14 @@ export default function StartWhyNot(sf: SequenceFactory): Sequence[] {
       ];
     }),
 
-    sf.create(SureStoryId, (df, se) => {
+    sf.create(SureStoryId, (df) => {
       return [
         df.message(`It's Confusing`, `Sorry about the confusion. We're sure you're going to enjoy this.`),
         df.message(`Start Survey`, `Let's load the survey`, 'Ok', `We're sure you'll be sure`, ColorSurveyStoryId),
       ];
     }),
 
-    sf.create(ChangeMindStoryId, (df, se) => {
+    sf.create(ChangeMindStoryId, (df) => {
       return [
         df.message('Great!', `We're glad you changed your mind!`),
         df.message('Start Survey', `Let's start this survey...`, 'Ok', `You'll love it`, ColorSurveyStoryId),

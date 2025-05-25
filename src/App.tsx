@@ -1,5 +1,4 @@
 import { use, useEffect, useMemo, useRef } from 'react';
-import './App.css';
 import { DialogRenderer } from './components/dialog-renderer';
 import { DialogRegistryContext } from './contexts/dialog-registry-context';
 import { SequenceFactory } from './core/sequence-factory';
@@ -9,6 +8,7 @@ import { StoryId } from './stories/start';
 import { ComponentFactory } from './core/component-factory';
 import { SideEffectHandlerFactory } from './core/side-effect-handler-factory';
 import { ApplicationBackgroundContext } from './contexts/application-background-context';
+import './App.css';
 
 function App() {
   const initialized = useRef<boolean>(null);
@@ -26,7 +26,7 @@ function App() {
     }
 
     initialized.current = true;
-    createSequences(sequenceFactory, dialogRegistry.addDialog);
+    createSequences(sequenceFactory, sideEffectHandlerFactory, componentFactory, dialogRegistry.addDialog);
 
     dialogManager.addDialog(dialogRegistry.getDialog(StoryId));
   }, [
