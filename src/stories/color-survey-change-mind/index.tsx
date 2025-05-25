@@ -19,6 +19,7 @@ export default function ColorSurveyChangeMind(sf: SequenceFactory): Sequence[] {
       return [
         df.message('Reality Check', 'Yes you did!'),
         df.custom('Time Out', ce.componentWithChildren(WaitToClick, `Well, if you're going to be like that, we're going to take a little break.`, { timeOut: 20000 }), () => {}),
+        df.message('Lesson Learned?', `We hope you learned your lesson?`),
       ];
     }),
   ];
