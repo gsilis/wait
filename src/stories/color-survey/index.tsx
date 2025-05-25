@@ -1,4 +1,5 @@
 import { DecisionValue } from "../../components/decision-value";
+import { DialogPrimaryText } from "../../components/dialog-primary-text";
 import { ClickNTimes } from "../../components/story-components/click-n-times";
 import { BLACK, BLUE, GRAY, GREEN, INDIGO, ORANGE, RED, VIOLET, WHITE, YELLOW } from "../../constants/colors";
 import { FAVORITE_COLOR } from "../../constants/decision-type";
@@ -30,7 +31,7 @@ export default function ColorSurvey(sf: SequenceFactory): Sequence[] {
         df.cancel(ColorSurveyChangeMindStoryId),
         df.selectWithSideEffect('Favorite Color', se.saveTo(FAVORITE_COLOR), 'What is your favorite color?', colors, 'Submit', undefined, true, `Cancel`),
         df.cancel(NotFavoriteStoryId),
-        df.dialog('Double Check', () => <>Is <DecisionValue decisionId={FAVORITE_COLOR} /> really your favorite color?</>, 'Yes', 'No'),
+        df.dialog('Double Check', () => <DialogPrimaryText>Is <DecisionValue decisionId={FAVORITE_COLOR} /> really your favorite color?</DialogPrimaryText>, 'Yes', 'No'),
         df.custom(
           'Try Clicking',
           cf.componentWithChildren(
