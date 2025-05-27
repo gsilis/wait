@@ -51,6 +51,7 @@ export function DialogContainer({
       'absolute',
       'items-center',
       'justify-center',
+      'backdrop-blur-xs',
       ...offsets.valuesFor(position),
     ];
 

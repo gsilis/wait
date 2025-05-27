@@ -17,7 +17,9 @@ function App() {
   const applicationBacktround = use(ApplicationBackgroundContext);
 
   const componentFactory = useMemo<ComponentFactory>(() => new ComponentFactory(), []);
-  const sideEffectHandlerFactory = useMemo<SideEffectHandlerFactory>(() => new SideEffectHandlerFactory(), []);
+  const sideEffectHandlerFactory = useMemo<SideEffectHandlerFactory>(() => {
+    return new SideEffectHandlerFactory();
+  }, []);
   const sequenceFactory = useMemo<SequenceFactory>(() => new SequenceFactory(componentFactory, sideEffectHandlerFactory), [componentFactory]);
 
   useEffect(() => {
@@ -29,6 +31,7 @@ function App() {
     createSequences(sequenceFactory, sideEffectHandlerFactory, componentFactory, dialogRegistry.addDialog);
 
     dialogManager.addDialog(dialogRegistry.getDialog(StoryId));
+    // dialogManager.addDialog(dialogRegistry.getDialog('color-survey-9'));
   }, [
     dialogRegistry.addDialog,
     dialogRegistry.getDialog,

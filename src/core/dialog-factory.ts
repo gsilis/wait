@@ -1,6 +1,7 @@
 import type { DialogHandler, DialogRouter, DialogType } from "../constants/dialog-type";
 import type { Sequence } from "./sequence";
 import type { ComponentFactory } from "./component-factory";
+import type { DecisionInterface } from "../contexts/decision-context";
 
 type StringOrComponent = string | React.FunctionComponent;
 
@@ -125,6 +126,37 @@ export class DialogFactory {
     this.sequence.add(dialog);
   }
 
+  select(
+    title: string,
+    handler: DialogHandler,
+    confirmOrCancel: (result: any, decisionApi?: DecisionInterface) => boolean,
+    message: string = '',
+    options: [title: string, message?: string, id?: string, selected?: boolean][] = [],
+    confirmText: string = 'Submit',
+    confirmTitle: string = '',
+    cancelable: boolean = false,
+    cancelText: string = '',
+    cancelTitle: string = '',
+    overrideNextId: string | null = null,
+  ) {
+    const id = this.sequence.nextId();
+    const nextId = overrideNextId || this.sequence.nextId(1);
+
+    if (!this.cancelId) {
+      throw new Error('No cancel id is set.');
+    }
+
+    const dialog: DialogType = {
+      id,
+      title,
+      component: this.componentFactory.simpleSelect(title, options, message, confirmText, confirmTitle, cancelable, cancelText, cancelTitle),
+      route: this.decisionRouterFor(confirmOrCancel, nextId, this.cancelId),
+      handle: handler,
+    };
+
+    return this.sequence.add(dialog);
+  }
+
   selectWithSideEffect(
     title: string,
     handler: DialogHandler,
@@ -171,6 +203,12 @@ export class DialogFactory {
   private dialogRouterFor(confirmId: string, cancelId: string): DialogRouter {
     return (result) => {
       return result ? confirmId : cancelId
+    };
+  }
+
+  private decisionRouterFor(handler: (result: any, decisionApi?: DecisionInterface) => boolean, confirmId: string, cancelId: string): DialogRouter {
+    return (result, decisionApi) => {
+      return handler(result, decisionApi) ? confirmId : cancelId;
     };
   }
 }

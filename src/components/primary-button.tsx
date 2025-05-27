@@ -7,6 +7,8 @@ export function PrimaryButton({
   children,
   disabled = false,
   onClick,
+  onMouseDown = () => {},
+  onMouseUp = () => {},
   title,
   progress = 100,
 }: ButtonProps) {
@@ -31,7 +33,14 @@ export function PrimaryButton({
     progress
   ]);
 
-  return <button title={ title } disabled={ disabled } onClick={ onClick } className={ classes }>
+  return <button
+    title={ title }
+    disabled={ disabled }
+    onClick={ onClick }
+    onMouseDown={ onMouseDown }
+    onMouseUp={ onMouseUp }
+    className={ classes }
+  >
     { children }
   </button>;
 }
