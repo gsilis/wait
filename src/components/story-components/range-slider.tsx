@@ -20,7 +20,7 @@ export function RangeSlider({
   step = 1,
   stepMessages = [],
 }: DialogComponentProps & ChildrenProps & RangeSliderInterface) {
-  const [value, setValue] = useState<number>(defaultValue);
+  const [value, _setValue] = useState<number>(defaultValue);
   const messages = useMemo(() => {
     const values = new GraduatedValue<string>();
 

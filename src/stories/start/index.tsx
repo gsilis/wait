@@ -1,5 +1,3 @@
-import { DialogPrimaryText } from "../../components/dialog-primary-text";
-import { ClickNSeconds } from "../../components/story-components/click-n-seconds";
 import { SURVEY } from "../../constants/decision-type";
 import type { Sequence } from "../../core/sequence";
 import type { SequenceFactory } from "../../core/sequence-factory";
@@ -35,7 +33,7 @@ clickNSecondsMessages.add(42, `ERR 404: Content Not Found`);
 
 export default function StartStories(sf: SequenceFactory): Sequence[] {
   return [
-    sf.create(StoryId, (df, se, cf) => {
+    sf.create(StoryId, (df, se, _cf) => {
       return [
         df.cancel(StartWhyNotStoryId),
         df.message('Oops', 'We could not load the content.'),
