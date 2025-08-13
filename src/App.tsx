@@ -14,7 +14,7 @@ function App() {
   const initialized = useRef<boolean>(null);
   const dialogRegistry = use(DialogRegistryContext);
   const dialogManager = use(DialogManagerContext);
-  const applicationBacktround = use(ApplicationBackgroundContext);
+  const applicationBackground = use(ApplicationBackgroundContext);
 
   const componentFactory = useMemo<ComponentFactory>(() => new ComponentFactory(), []);
   const sideEffectHandlerFactory = useMemo<SideEffectHandlerFactory>(() => {
@@ -39,7 +39,7 @@ function App() {
   ]);
 
   return (
-    <div className={ applicationBacktround.applicationBackgroundClasses }>
+    <div className={ applicationBackground.applicationBackgroundClasses }>
       <DialogRenderer></DialogRenderer>
     </div>
   )
