@@ -51,7 +51,7 @@ export class LinearTimedSequencePart<T extends number> implements TimedSequenceP
 
   subscribe(observer: Observer<T>): Subscription {
     if (this.observer) {
-      throw new Error("This object is only meant to have one subscriber.");
+      console.warn("This object is only meant to have one subscriber.");
     }
 
     this.observer = observer;

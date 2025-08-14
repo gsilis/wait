@@ -18,7 +18,7 @@ export class StaticTimedSequencePart<T> implements TimedSequencePart<T> {
   }
 
   // The value is ignored here because it's a static value object.
-  start(value: T) {
+  start(_value: T) {
     if (!this.observer) {
       throw new Error("No subscriber is present.");
     }
@@ -39,7 +39,7 @@ export class StaticTimedSequencePart<T> implements TimedSequencePart<T> {
 
   subscribe(observer: Observer<T>): Subscription {
     if (this.observer) {
-      throw new Error("This object is only meant to have a single subscriber.");
+      console.warn("This object is only meant to have a single subscriber.");
     }
 
     this.observer = observer;
