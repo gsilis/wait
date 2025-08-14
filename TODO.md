@@ -1,0 +1,1 @@
+- [] Dialog factory should have a `loader` helper for simple linear animated loaders
