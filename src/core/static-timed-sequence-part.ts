@@ -18,11 +18,11 @@ export class StaticTimedSequencePart<T> implements TimedSequencePart<T> {
   }
 
   // The value is ignored here because it's a static value object.
-  start(_value: T) {
+  start(value: T) {
     if (!this.observer) {
       throw new Error("No subscriber is present.");
     }
-    if (!this.isRunning) return;
+    if (this.isRunning) return;
 
     this.isRunning = true;
     this.intervalSubscription = interval(this.duration).pipe(take(1)).subscribe(this.onComplete.bind(this));

@@ -1,4 +1,4 @@
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, type Observer } from 'rxjs';
 import { type TimedSequencePart } from './timed-sequence-part';
 
 export class TimedSequence<T> {
@@ -56,8 +56,8 @@ export class TimedSequence<T> {
     }
   }
 
-  observe(fn: (value: T) => void) {
-    return this.behaviorSubject.subscribe(fn);
+  observe(observer: Observer<T>) {
+    return this.behaviorSubject.subscribe(observer);
   }
 
   reset() {
@@ -77,13 +77,15 @@ export class TimedSequence<T> {
 
     const part = this.parts[this.partIndex];
     part.subscribe({
-      next: this.onProgress,
-      error: this.onComplete,
-      complete: this.onComplete
+      next: this.onProgress.bind(this),
+      error: this.onComplete.bind(this),
+      complete: this.onComplete.bind(this)
     });
+    part.start(this.value);
   }
 
   private onProgress(value: T) {
+    this.value = value;
     this.behaviorSubject.next(value);
   }
 

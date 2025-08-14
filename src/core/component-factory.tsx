@@ -107,11 +107,21 @@ export class ComponentFactory {
   customDialog(
     title: string,
     Component: React.FunctionComponent<DialogComponentProps>,
+    properties: Record<any, any> = {}
   ) {
     return ({ onAccept, onDecline }: DialogComponentProps) => (
       <Dialog title={ title }>
-        <Component onAccept={ onAccept } onDecline={ onDecline } />
+        <Component onAccept={ onAccept } onDecline={ onDecline } { ...properties } />
       </Dialog>
+    );
+  }
+
+  component(
+    Component: React.FunctionComponent<DialogComponentProps & ChildrenProps>,
+    properties: Record<any, any> = {}
+  ) {
+    return ({ onAccept, onDecline }: DialogComponentProps) => (
+      <Component onAccept={ onAccept } onDecline={ onDecline } { ...properties } />
     );
   }
 
