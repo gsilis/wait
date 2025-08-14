@@ -1,4 +1,5 @@
 - [+] DialogProgress component re-runs effects after new dialog is displayed
+- [] Debounce clicks for `WaitToClick`
 - [] Dialog factory should have a `loader` helper for simple linear animated loaders
 - [] Range slider dialog
 - [] Click for x seconds dialog
