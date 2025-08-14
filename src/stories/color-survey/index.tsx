@@ -29,7 +29,7 @@ const colors: [title: string, message: string, value: string][] = [
 
 export default function ColorSurvey(sf: SequenceFactory): Sequence[] {
   return [
-    sf.create(StoryId, (df, se, cf) => {
+    sf.create(StoryId, (df, se) => {
       return [
         df.cancel(ColorSurveyChangeMindStoryId),
         df.selectWithSideEffect('Favorite Color', se.saveTo(FAVORITE_COLOR), 'What is your favorite color?', colors, 'Submit', undefined, true, `Cancel`),
