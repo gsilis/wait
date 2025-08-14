@@ -1,6 +1,12 @@
 # Wait...
 
-# Dialogs to build
+A dialog-based game. Uses vite to run.
 
-- [] Range slider
-- [] Click for x seconds
+
+## Running
+```sh
+npm install
+npm run dev
+```
+
+Should start a server on `http://localhost:5173`

@@ -1,1 +1,3 @@
 - [] Dialog factory should have a `loader` helper for simple linear animated loaders
+- [] Range slider dialog
+- [] Click for x seconds dialog
