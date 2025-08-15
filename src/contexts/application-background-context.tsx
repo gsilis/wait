@@ -14,7 +14,7 @@ export function ApplicationBacktroundProvider({ children }: ChildrenProps) {
     return [
       'bg-linear-to-bl',
       'from-slate-200 to-slate-400',
-      'dark:from-slate-800 dark:to-slate-950'
+      'dark:from-slate-800 dark:to-slate-950',
     ].join(' ');
   }, []);
   const api: ApplicationBackgroundInterface = {

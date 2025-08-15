@@ -10,7 +10,7 @@ export function DialogContent({ children, verticalAlign = 'top' }: DialogContent
     center: 'content-center',
     bottom: 'content-end'
   })[verticalAlign] || 'content-start';
-  const classes = ['px-3 py-2 flex-1', align];
+  const classes = ['px-3 py-2 flex-1', 'overflow-y-scroll', 'md:overflow-hidden', align];
 
   return <div className={ classes.join(' ') }>
     { children }

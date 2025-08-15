@@ -13,19 +13,19 @@ interface DialogContainerProps {
 }
 
 const offsets = (() => {
-  const middle: any[] = [];
+  const middle: any[] = ['mt-0', 'h-90/100'];
   return new OffsetCalculator([
-    ['-m-20'],
-    ['-m-16'],
-    ['-m-12'],
-    ['-m-8'],
-    ['-m-4'],
+    ['md:-m-20', 'mt-1', 'h-90/100'],
+    ['md:-m-16', 'mt-2', 'h-90/100'],
+    ['md:-m-12', 'mt-3', 'h-90/100'],
+    ['md:-m-8', 'mt-4', 'h-90/100'],
+    ['md:-m-4', 'mt-5', 'h-90/100'],
     middle,
-    ['m-4'],
-    ['m-8'],
-    ['m-12'],
-    ['m-16'],
-    ['m-20'],
+    ['md:m-4', 'mt-1', 'h-90/100'],
+    ['md:m-8', 'mt-2', 'h-90/100'],
+    ['md:m-12', 'mt-3', 'h-90/100'],
+    ['md:m-16', 'mt-4', 'h-90/100'],
+    ['md:m-20', 'mt-5', 'h-90/100'],
   ], middle);
 })();
 
@@ -46,7 +46,7 @@ export function DialogContainer({
       'flex',
       'top-0',
       'left-0',
-      'w-full h-full',
+      'w-full md:h-full',
       'overflow-hidden',
       'absolute',
       'items-center',

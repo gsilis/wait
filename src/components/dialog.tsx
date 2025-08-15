@@ -22,8 +22,11 @@ export function Dialog({
       (className || ''),
       'flex',
       'flex-col',
-      'w-xl',
-      'min-h-48',
+      'w-full',
+      'h-full',
+      'md:w-xl',
+      'md:min-h-48',
+      'md:h-auto',
       dialogBackground.dialogBackgroundClasses,
       dialogShadow.dialogShadowClasses,
     ].join(' ');
