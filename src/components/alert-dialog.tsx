@@ -7,18 +7,20 @@ import { PrimaryButton } from "./primary-button";
 
 export interface AlertDialogInterface extends DialogProps, ChildrenProps {
   accept?: CallableFunction,
+  className?: string,
   confirmText: string,
   confirmTitle?: string,
 }
 
 export default function AlertDialog({
   accept,
+  className,
   confirmText,
   confirmTitle,
   children,
   title,
 }: AlertDialogInterface) {
-  return <Dialog title={ title }>
+  return <Dialog title={ title } className={ className }>
     <DialogContent>
       { children }
     </DialogContent>

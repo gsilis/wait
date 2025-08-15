@@ -6,17 +6,20 @@ import { DialogShadowContext } from "../contexts/dialog-shadow-context";
 
 interface DialogProps {
   title: string,
+  className?: string,
 }
 
 export function Dialog({
   title,
   children,
+  className,
 }: ChildrenProps & DialogProps) {
   const dialogTitle = use(DialogTitleContext);
   const dialogBackground = use(DialogBackgroundContext);
   const dialogShadow = use(DialogShadowContext);
   const dialogClasses = useMemo<string>(() => {
     return [
+      (className || ''),
       'flex',
       'flex-col',
       'w-xl',
@@ -27,6 +30,7 @@ export function Dialog({
   }, [
     dialogBackground.dialogBackgroundClasses,
     dialogShadow.dialogShadowClasses,
+    className,
   ]);
   const titleClasses = useMemo<string>(() => {
     return [

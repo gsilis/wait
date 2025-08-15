@@ -51,7 +51,6 @@ export function DialogContainer({
       'absolute',
       'items-center',
       'justify-center',
-      'backdrop-blur-xs',
       ...offsets.valuesFor(position),
     ];
 
@@ -61,6 +60,15 @@ export function DialogContainer({
 
     return c.join(' ');
   }, [position, disabled]);
+  const innerClasses = useMemo<string>(() => {
+    const classes: string[] = [];
+
+    if (disabled) {
+      classes.push('blur-xs');
+    }
+
+    return classes.join(' ');
+  }, [disabled]);
   const doRouting = useCallback((result: boolean) => {
     try {
       dialog.handle(result, decisions);
@@ -86,6 +94,6 @@ export function DialogContainer({
   }, [doRouting]);
 
   return <div className={ classes }>
-    <DialogComponent onAccept={ onAccept } onDecline={ onDecline } />
+    <DialogComponent onAccept={ onAccept } onDecline={ onDecline } className={ innerClasses } />
   </div>;
 }

@@ -22,12 +22,13 @@ export class ComponentFactory {
       child = message;
     }
 
-    return ({ onAccept }: DialogComponentProps) => (
+    return ({ onAccept, className }: DialogComponentProps) => (
       <AlertDialog
         title={ title }
         accept={ onAccept }
         confirmText={ confirmText }
         confirmTitle={ confirmTitle }
+        className={ className }
       >
         <DialogPrimaryText>
           { child }
@@ -42,7 +43,7 @@ export class ComponentFactory {
     confirmText: string,
     cancelText: string,
     confirmTitle?: string,
-    cancelTitle?: string,
+    cancelTitle?: string
   ): React.FunctionComponent {
     let child;
     if (typeof message === 'function') {
@@ -52,7 +53,7 @@ export class ComponentFactory {
       child = <DialogPrimaryText>{ message }</DialogPrimaryText>;
     }
 
-    return ({ onAccept, onDecline }: DialogComponentProps) => (
+    return ({ onAccept, onDecline, className }: DialogComponentProps) => (
       <ConfirmDialog
         title={ title }
         accept={ onAccept }
@@ -61,6 +62,7 @@ export class ComponentFactory {
         cancelText={ cancelText }
         confirmTitle={ confirmTitle }
         cancelTitle={ cancelTitle }
+        className={ className }
       >
         { child }
       </ConfirmDialog>
@@ -75,7 +77,7 @@ export class ComponentFactory {
     confirmTitle: string = '',
     cancelable: boolean = false,
     cancelText: string = '',
-    cancelTitle: string = ''
+    cancelTitle: string = '',
   ) {
     let selectedOption: string | undefined;
     const selectOptions = options.map((option, index): TileSelectOption => {
@@ -84,7 +86,7 @@ export class ComponentFactory {
       return { id: `${optionId}`, title: option[0], description: option[1] };
     });
 
-    return ({ onAccept, onDecline }: DialogComponentProps) => (
+    return ({ onAccept, onDecline, className }: DialogComponentProps) => (
       <DialogSelect
         title={ title }
         confirmText={ confirmText }
@@ -96,6 +98,7 @@ export class ComponentFactory {
         selected={ selectedOption }
         accept={ onAccept }
         decline={ onDecline }
+        className={ className }
       >
         <DialogPrimaryText>
           { message }
@@ -107,10 +110,10 @@ export class ComponentFactory {
   customDialog(
     title: string,
     Component: React.FunctionComponent<DialogComponentProps>,
-    properties: Record<any, any> = {}
+    properties: Record<any, any> = {},
   ) {
-    return ({ onAccept, onDecline }: DialogComponentProps) => (
-      <Dialog title={ title }>
+    return ({ onAccept, onDecline, className }: DialogComponentProps) => (
+      <Dialog title={ title } className={ className }>
         <Component onAccept={ onAccept } onDecline={ onDecline } { ...properties } />
       </Dialog>
     );
@@ -118,20 +121,20 @@ export class ComponentFactory {
 
   component(
     Component: React.FunctionComponent<DialogComponentProps & ChildrenProps>,
-    properties: Record<any, any> = {}
+    properties: Record<any, any> = {},
   ) {
-    return ({ onAccept, onDecline }: DialogComponentProps) => (
-      <Component onAccept={ onAccept } onDecline={ onDecline } { ...properties } />
+    return ({ onAccept, onDecline, className }: DialogComponentProps) => (
+      <Component onAccept={ onAccept } onDecline={ onDecline } className={ className } { ...properties } />
     );
   }
 
   componentWithChildren(
     Component: React.FunctionComponent<DialogComponentProps & ChildrenProps>,
     children: any,
-    properties: Record<any, any> = {}
+    properties: Record<any, any> = {},
   ) {
-    return ({ onAccept, onDecline }: DialogComponentProps) => (
-      <Component onAccept={ onAccept } onDecline={ onDecline } { ...properties }>{ children }</Component>
+    return ({ onAccept, onDecline, className }: DialogComponentProps) => (
+      <Component onAccept={ onAccept } onDecline={ onDecline } className={ className } { ...properties }>{ children }</Component>
     );
   }
 }

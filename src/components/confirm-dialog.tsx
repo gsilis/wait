@@ -9,6 +9,7 @@ import { SecondaryButton } from "./secondary-button";
 export interface ConfirmDialogInterface extends DialogProps, ChildrenProps {
   accept?: CallableFunction,
   decline?: CallableFunction,
+  className?: string,
   confirmText: string,
   confirmTitle?: string,
   cancelText: string,
@@ -18,6 +19,7 @@ export interface ConfirmDialogInterface extends DialogProps, ChildrenProps {
 export default function ConfirmDialog({
   accept,
   decline,
+  className,
   confirmText,
   confirmTitle,
   cancelText,
@@ -25,7 +27,7 @@ export default function ConfirmDialog({
   title,
   children,
 }: ConfirmDialogInterface) {
-  return <Dialog title={ title }>
+  return <Dialog title={ title } className={ className }>
     <DialogContent>
       { children }
     </DialogContent>

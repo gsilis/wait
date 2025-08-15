@@ -18,6 +18,7 @@ interface DialogSelectProps extends DialogProps, ChildrenProps {
   confirmTitle?: string,
   cancelText?: string,
   cancelTitle?: string,
+  className?: string,
 };
 
 export function DialogSelect({
@@ -32,13 +33,14 @@ export function DialogSelect({
   cancelTitle,
   title,
   children,
+  className,
 }: DialogSelectProps) {
   const [selectedId, setSelectedId] = useState<string | undefined>(selected);
   const onConfirm = useCallback(() => {
     accept && accept(selectedId);
   }, [accept, selectedId]);
 
-  return <Dialog title={ title }>
+  return <Dialog title={ title } className={ className }>
     <DialogContent>
       { children }
       <TileSelect options={ options } onSelect={ setSelectedId } selected={ selectedId } />

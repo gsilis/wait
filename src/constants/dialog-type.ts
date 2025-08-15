@@ -6,6 +6,7 @@ export type DialogHandler = (result: any, decisionApi: DecisionInterface) => voi
 export type DialogComponentProps = {
   onAccept?: CallableFunction,
   onDecline?: CallableFunction,
+  className?: string,
 };
 
 export type DialogType = {
