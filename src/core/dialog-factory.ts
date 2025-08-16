@@ -192,6 +192,27 @@ export class DialogFactory {
     this.sequence.add(dialog);
   }
 
+  loading(
+    title: string,
+    handler: DialogHandler,
+    duration: number,
+    messages: string | string[],
+    overrideNextId: string | null = null
+  ) {
+    const id = this.sequence.nextId();
+    const nextId = overrideNextId || this.sequence.nextId(1);
+
+    const dialog: DialogType = {
+      id,
+      title,
+      component: this.componentFactory.progress(title, duration, messages, {}),
+      route: this.messageRouterFor(nextId),
+      handle: handler
+    };
+
+    this.sequence.add(dialog);
+  }
+
   cancel(id: string): void {
     this.cancelId = id;
   }

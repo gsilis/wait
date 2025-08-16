@@ -3,6 +3,7 @@ import ConfirmDialog from "../components/confirm-dialog";
 import { Dialog } from "../components/dialog";
 import { DialogPrimaryText } from "../components/dialog-primary-text";
 import { DialogSelect } from "../components/dialog-select";
+import ProgressDialog from "../components/progress-dialog";
 import type { TileSelectOption } from "../components/tile-select";
 import type { DialogComponentProps } from "../constants/dialog-type";
 import type { ChildrenProps } from "../contexts/support/children-props";
@@ -116,6 +117,24 @@ export class ComponentFactory {
       <Dialog title={ title } className={ className }>
         <Component onAccept={ onAccept } onDecline={ onDecline } { ...properties } />
       </Dialog>
+    );
+  }
+
+  progress(
+    title: string,
+    duration: number,
+    messages: string | string[],
+    properties: Record<any, any> = {},
+  ) {
+    return ({ onAccept, className }: DialogComponentProps) => (
+      <ProgressDialog
+        title={ title }
+        accept={ onAccept }
+        className={ className }
+        duration={ duration }
+        messages={ messages }
+        { ...properties }
+      ></ProgressDialog>
     );
   }
 
