@@ -3,12 +3,16 @@ import { Dialog } from "./dialog";
 import { DialogContent } from "./dialog-content";
 import { DialogPrimaryText } from "./dialog-primary-text";
 import { DialogTitle } from "./dialog-title";
+import UnderConstruction from "../public/UnderConstruction.svg";
 
 export default function NullDialog(_config: DialogComponentProps) {
   return <Dialog title="Oh No!">
-    <DialogTitle>Error fetching alert.</DialogTitle>
+    <DialogTitle>Under Construction</DialogTitle>
     <DialogContent>
-      <DialogPrimaryText>This is actually an error. Something went wrong, you're not really supposed to see this. So, congratulations! In a way.</DialogPrimaryText>
+      <div className="flex justify-center">
+        <img src={ UnderConstruction } width="150px" />
+      </div>
+      <DialogPrimaryText className="text-center">Thanks for playing!</DialogPrimaryText>
     </DialogContent>
   </Dialog>;
 }
