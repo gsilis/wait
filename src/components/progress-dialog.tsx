@@ -6,7 +6,6 @@ import { LinearTimedSequencePart } from "../core/linear-timed-sequence-part";
 import { StaticTimedSequencePart } from "../core/static-timed-sequence-part";
 import { DialogProgress } from "./story-components/dialog-progress";
 import { DialogContent } from "./dialog-content";
-import { DialogTitle } from "./dialog-title";
 import { Dialog } from "./dialog";
 
 export interface ProgressDialogInterface extends DialogProps, ChildrenProps {
